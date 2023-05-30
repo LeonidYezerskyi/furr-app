@@ -1,7 +1,6 @@
 import React from "react";
-
-import HomeScreen from "./src/screens/homeScreen/HomeScreen";
+import Main from "./src/components/Main";
 
 export default function App() {
-  return <HomeScreen />;
+  return <Main />;
 }

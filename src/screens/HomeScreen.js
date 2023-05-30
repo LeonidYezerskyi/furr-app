@@ -7,7 +7,7 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <ImageBackground
         style={styles.image}
-        source={require("../../../assets/background.png")}
+        source={require("../../assets/background.png")}
       ></ImageBackground>
       <StatusBar barStyle="light-content" />
     </View>
