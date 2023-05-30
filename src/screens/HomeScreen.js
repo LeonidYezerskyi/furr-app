@@ -2,6 +2,8 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, ImageBackground } from "react-native";
 import SearchBox from "../components/SearchBox";
+import DoctorItem from "../components/DoctorItem";
+
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
@@ -10,6 +12,7 @@ const HomeScreen = () => {
         source={require("../../assets/background.png")}
       >
         <SearchBox />
+        <DoctorItem />
       </ImageBackground>
       <StatusBar barStyle="light-content" />
     </View>

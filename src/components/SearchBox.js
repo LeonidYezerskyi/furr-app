@@ -1,5 +1,12 @@
 import React from "react";
-import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  TextInput,
+  Image,
+} from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
 const SearchBox = () => {
@@ -27,6 +34,32 @@ const SearchBox = () => {
           />
         </Picker>
       </View>
+      <View style={styles.searchBoxes}>
+        <View>
+          <TextInput
+            placeholder="Nearby"
+            // value={country}
+            // onChangeText={(text) => setCountry(text)}
+            style={styles.input}
+          />
+          <Image
+            source={require("../../assets/location.png")}
+            style={styles.mapPin}
+          />
+        </View>
+        <View>
+          <TextInput
+            placeholder="Today"
+            // value={country}
+            // onChangeText={(text) => setCountry(text)}
+            style={[styles.input, styles.input2]}
+          />
+          <Image
+            source={require("../../assets/calendar.png")}
+            style={styles.mapPin}
+          />
+        </View>
+      </View>
       <TouchableOpacity activeOpacity={0.6} style={styles.button}>
         <Text onPress={handleSearch} style={styles.textBtn}>
           Search
@@ -42,6 +75,7 @@ const styles = StyleSheet.create({
     height: 264,
     backgroundColor: "#FFFFFF",
     marginTop: 56,
+    marginBottom: 30,
     borderRadius: 12,
     shadowColor: "#000000",
     shadowOffset: {
@@ -83,6 +117,7 @@ const styles = StyleSheet.create({
     width: 158,
     borderRadius: 24,
     marginTop: 25,
+    marginBottom: 26,
     justifyContent: "center",
     alignItems: "center",
     marginHorizontal: 98,
@@ -95,6 +130,36 @@ const styles = StyleSheet.create({
     letterSpacing: 0.04,
     textTransform: "uppercase",
     color: "#FFFFFF",
+  },
+
+  searchBoxes: {
+    display: "flex",
+    flexDirection: "row",
+  },
+
+  input: {
+    borderWidth: 1,
+    borderRadius: 6,
+    borderStyle: "solid",
+    borderColor: "#E9E8E8",
+    height: 40,
+    width: 150,
+
+    letterSpacing: 0.01,
+    fontSize: 13,
+    lineHeight: 13,
+    paddingLeft: 15,
+    marginLeft: 20,
+  },
+
+  input2: {
+    marginLeft: 14,
+  },
+
+  mapPin: {
+    position: "absolute",
+    bottom: 11,
+    left: 142,
   },
 });
 
