@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "Sophia James",
+    "photo": "https://static.vecteezy.com/system/resources/previews/011/602/170/large_2x/veterinary-clinic-female-doctor-portrait-at-the-animal-hospital-holding-cute-sick-cat-free-photo.jpg",
+    "position": "Veterinary Dentist",
+    "rating": 4.9,
+    "address": {
+      "houseNumber": 28,
+      "street": " Oakwood Avenue",
+      "city": " New York "
+    },
+    "available": "Today"
+  },
+  {
+    "id": 2,
+    "name": "John Doe",
+    "photo": "https://media.istockphoto.com/id/1189303662/photo/portrait-of-happy-african-doctor-at-private-clinic.jpg?s=612x612&w=0&k=20&c=P1sA44uF-qI-8Ox5iv4j7dMThSB9trT_QPjYdS13sKo=",
+    "position": "Veterinary Neurosurgeon",
+    "rating": 4.3,
+    "address": {
+      "houseNumber": 8,
+      "street": " Sharon Avenue",
+      "city": " New York "
+    },
+    "available": "Tomorrow"
+  },
+  {
+    "id": 3,
+    "name": "Isabella Ava",
+    "photo": "https://img.freepik.com/free-photo/close-up-veterinarian-taking-care-dog_23-2149100197.jpg",
+    "position": "Veterinary Dentist",
+    "rating": 4.0,
+    "address": {
+      "houseNumber": 20,
+      "street": " Metropolitan Avenue",
+      "city": " New York "
+    },
+    "available": "Today"
+  }
+]

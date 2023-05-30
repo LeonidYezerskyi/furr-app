@@ -60,10 +60,12 @@ const SearchBox = () => {
           />
         </View>
       </View>
-      <TouchableOpacity activeOpacity={0.6} style={styles.button}>
-        <Text onPress={handleSearch} style={styles.textBtn}>
-          Search
-        </Text>
+      <TouchableOpacity
+        onPress={handleSearch}
+        activeOpacity={0.6}
+        style={styles.button}
+      >
+        <Text style={styles.textBtn}>Search</Text>
       </TouchableOpacity>
     </View>
   );

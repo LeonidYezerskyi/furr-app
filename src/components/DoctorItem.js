@@ -1,27 +1,26 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-const DoctorItem = () => {
+const DoctorItem = ({ item }) => {
+  const address = `${item.address.houseNumber} ${item.address.street}, ${item.address.city}`;
+
   return (
     <View style={styles.itemWrapper}>
       <View style={styles.infoWrapper}>
-        <Image
-          source={require("../../assets/doctor.jpg")}
-          style={styles.docImg}
-        />
+        <Image source={{ uri: item.photo }} style={styles.docImg} />
         <View style={styles.nameWrapper}>
-          <Text style={styles.name}>Sophia James</Text>
-          <Text style={styles.position}>Veterinary Dentist</Text>
+          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.position}>{item.position}</Text>
         </View>
         <Image source={require("../../assets/rating.png")} />
-        <Text style={styles.ratingInfo}>4.9</Text>
+        <Text style={styles.ratingInfo}>{item.rating}</Text>
       </View>
       <View style={styles.locationWrapper}>
         <Image
           source={require("../../assets/location.png")}
           style={styles.locationPin}
         />
-        <Text style={styles.addressInfo}>28 Oakwood Avenue, New York</Text>
+        <Text style={styles.addressInfo}>{address}</Text>
         <Image
           source={require("../../assets/dot.png")}
           style={styles.dotIcon}
@@ -30,11 +29,12 @@ const DoctorItem = () => {
       </View>
       <View style={styles.line} />
       <View style={styles.bottomWrapper}>
-        <Text style={styles.bottomText}>Available Today</Text>
+        <Text style={styles.bottomText}>Available {item.available}</Text>
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.4}
           onPress={() => {}}
+          disabled={true}
         >
           <Text style={styles.textBtn}>Book</Text>
         </TouchableOpacity>
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.05,
     shadowRadius: 60,
+    marginBottom: 12,
   },
 
   infoWrapper: {

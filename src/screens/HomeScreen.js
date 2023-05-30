@@ -2,7 +2,7 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, ImageBackground } from "react-native";
 import SearchBox from "../components/SearchBox";
-import DoctorItem from "../components/DoctorItem";
+import DoctorList from "../components/DoctorList";
 
 const HomeScreen = () => {
   return (
@@ -12,7 +12,7 @@ const HomeScreen = () => {
         source={require("../../assets/background.png")}
       >
         <SearchBox />
-        <DoctorItem />
+        <DoctorList />
       </ImageBackground>
       <StatusBar barStyle="light-content" />
     </View>
