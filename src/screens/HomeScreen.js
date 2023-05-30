@@ -1,14 +1,16 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, ImageBackground } from "react-native";
-
+import SearchBox from "../components/SearchBox";
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.image}
         source={require("../../assets/background.png")}
-      ></ImageBackground>
+      >
+        <SearchBox />
+      </ImageBackground>
       <StatusBar barStyle="light-content" />
     </View>
   );
