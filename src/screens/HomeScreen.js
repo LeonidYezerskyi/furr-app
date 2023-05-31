@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, ImageBackground } from "react-native";
+
 import SearchBox from "../components/SearchBox";
 import DoctorList from "../components/DoctorList";
 

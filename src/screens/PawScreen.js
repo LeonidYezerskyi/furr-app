@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
   },
 
   text: {
+    fontFamily: "Outfit-Regular",
+
     fontSize: 22,
   },
 });

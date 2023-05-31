@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
   },
 
   name: {
+    fontFamily: "Outfit-SemiBold",
     fontWeight: 600,
     fontSize: 14,
     lineHeight: 14,
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
   },
 
   position: {
+    fontFamily: "Outfit-Regular",
     fontSize: 11,
     lineHeight: 11,
     letterSpacing: 0.02,
@@ -98,6 +100,7 @@ const styles = StyleSheet.create({
   },
 
   ratingInfo: {
+    fontFamily: "Outfit-SemiBold",
     fontWeight: 600,
     fontSize: 14,
     letterSpacing: 0.02,
@@ -122,6 +125,7 @@ const styles = StyleSheet.create({
   },
 
   addressInfo: {
+    fontFamily: "Outfit-Regular",
     fontSize: 12,
     lineHeight: 12,
     letterSpacing: 0.02,
@@ -134,6 +138,7 @@ const styles = StyleSheet.create({
   },
 
   distanceInfo: {
+    fontFamily: "Outfit-Regular",
     fontSize: 12,
     lineHeight: 12,
     letterSpacing: 0.02,
@@ -158,6 +163,7 @@ const styles = StyleSheet.create({
   },
 
   bottomText: {
+    fontFamily: "Outfit-Medium",
     fontWeight: 500,
     fontSize: 12,
     lineHeight: 12,
@@ -176,6 +182,7 @@ const styles = StyleSheet.create({
   },
 
   textBtn: {
+    fontFamily: "Outfit-SemiBold",
     paddingTop: 2,
     color: "#FFFFFF",
     fontWeight: 600,

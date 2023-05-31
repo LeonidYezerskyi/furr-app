@@ -7,6 +7,7 @@ import {
   FlatList,
   SafeAreaView,
 } from "react-native";
+
 import DoctorItem from "./DoctorItem";
 import doctorsData from "../data/doctor.json";
 
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
+    fontFamily: "Outfit-SemiBold",
     fontWeight: 600,
     fontSize: 18,
     lineHeight: 18,
@@ -75,6 +77,7 @@ const styles = StyleSheet.create({
   },
 
   btnText: {
+    fontFamily: "Outfit-Medium",
     fontWeight: 500,
     fontSize: 13,
     lineHeight: 13,

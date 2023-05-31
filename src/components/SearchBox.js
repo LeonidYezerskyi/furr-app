@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import * as Location from "expo-location";
 import { getDistance } from "geolib";
+import * as Location from "expo-location";
 import { Picker } from "@react-native-picker/picker";
 import { View, TouchableOpacity, StyleSheet, Text, Image } from "react-native";
 
@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
   },
 
   placeholder: {
+    fontFamily: "Outfit-Regular",
     fontSize: 13,
     lineHeight: 13,
     letterSpacing: 0.01,
@@ -205,6 +206,7 @@ const styles = StyleSheet.create({
   },
 
   placeholderData: {
+    fontFamily: "Outfit-Regular",
     letterSpacing: 0.01,
     fontSize: 13,
     lineHeight: 13,
@@ -223,6 +225,7 @@ const styles = StyleSheet.create({
   },
 
   textBtn: {
+    fontFamily: "Outfit-SemiBold",
     fontWeight: 600,
     fontSize: 14,
     lineHeight: 14,
@@ -236,6 +239,7 @@ const styles = StyleSheet.create({
   },
 
   btnLocationTxt: {
+    fontFamily: "Outfit-Regular",
     fontSize: 13,
     lineHeight: 13,
     letterSpacing: 0.01,
@@ -255,6 +259,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 150,
 
+    fontFamily: "Outfit-Regular",
     letterSpacing: 0.01,
     fontSize: 13,
     lineHeight: 13,

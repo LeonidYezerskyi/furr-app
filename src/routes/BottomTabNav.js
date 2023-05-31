@@ -1,4 +1,3 @@
-import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image, TouchableOpacity } from "react-native";
 import HomeScreen from "../screens/HomeScreen";
