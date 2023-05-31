@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -10,7 +10,21 @@ import {
 import DoctorItem from "./DoctorItem";
 import doctorsData from "../data/doctor.json";
 
-const DoctorList = () => {
+const DoctorList = ({ filteredDoctors, showAllDoctors, setShowAllDoctors }) => {
+  // const [showAllDoctors, setShowAllDoctors] = useState(false);
+  const [displayedDoctors, setDisplayedDoctors] = useState([]);
+
+  useEffect(() => {
+    if (showAllDoctors) {
+      setDisplayedDoctors(doctorsData);
+    } else {
+      setDisplayedDoctors(filteredDoctors);
+    }
+  }, [showAllDoctors, filteredDoctors]);
+
+  const handleViewAllDoctors = () => {
+    setShowAllDoctors(true);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.listWrapper}>
@@ -18,13 +32,13 @@ const DoctorList = () => {
         <TouchableOpacity
           style={styles.btn}
           activeOpacity={0.4}
-          onPress={() => {}}
+          onPress={handleViewAllDoctors}
         >
           <Text style={styles.btnText}>View All</Text>
         </TouchableOpacity>
       </View>
       <FlatList
-        data={doctorsData}
+        data={displayedDoctors}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
           return <DoctorItem item={item} />;
@@ -37,6 +51,7 @@ const DoctorList = () => {
 const styles = StyleSheet.create({
   listWrapper: {
     display: "flex",
+    gap: 205,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

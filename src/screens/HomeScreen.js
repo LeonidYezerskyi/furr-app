@@ -1,18 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, ImageBackground } from "react-native";
 import SearchBox from "../components/SearchBox";
 import DoctorList from "../components/DoctorList";
 
 const HomeScreen = () => {
+  const [filteredDoctors, setFilteredDoctors] = useState([]);
+  // const [displayedDoctors, setDisplayedDoctors] = useState([]);
+  const [showAllDoctors, setShowAllDoctors] = useState(false);
+
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.image}
         source={require("../../assets/background.png")}
       >
-        <SearchBox />
-        <DoctorList />
+        <SearchBox
+          setFilteredDoctors={setFilteredDoctors}
+          // setDisplayedDoctors={setDisplayedDoctors}
+          setShowAllDoctors={setShowAllDoctors}
+        />
+        <DoctorList
+          filteredDoctors={filteredDoctors}
+          // displayedDoctors={displayedDoctors}
+          // setDisplayedDoctors={setDisplayedDoctors}
+          showAllDoctors={showAllDoctors}
+          setShowAllDoctors={setShowAllDoctors}
+        />
       </ImageBackground>
       <StatusBar barStyle="light-content" />
     </View>

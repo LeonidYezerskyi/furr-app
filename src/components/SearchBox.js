@@ -1,17 +1,70 @@
-import React from "react";
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  TextInput,
-  Image,
-} from "react-native";
+import React, { useState } from "react";
+import * as Location from "expo-location";
+import { getDistance } from "geolib";
 import { Picker } from "@react-native-picker/picker";
+import { View, TouchableOpacity, StyleSheet, Text, Image } from "react-native";
 
-const SearchBox = () => {
+import doctorsData from "../data/doctor.json";
+
+const SearchBox = ({ setFilteredDoctors, setShowAllDoctors }) => {
+  const [currentLocation, setCurrentLocation] = useState(null);
+  const [selectedDate, setSelectedDate] = useState("today");
+
+  const getCurrentLocation = async () => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        Alert.alert("Permission to access location was denied");
+      }
+    })();
+
+    const location = await Location.getCurrentPositionAsync();
+    const { latitude, longitude } = location.coords;
+
+    setCurrentLocation({ latitude, longitude });
+  };
+
+  const filterDoctorsByLocationAndDate = () => {
+    if (currentLocation === null) {
+      alert("We need your location in order to suggest nearby clinic.");
+    }
+
+    if (currentLocation) {
+      const { latitude, longitude } = currentLocation;
+
+      const filtered = doctorsData.filter((doctor) => {
+        const doctorDistance = getDistance(
+          { latitude: doctor.latitude, longitude: doctor.longitude },
+          { latitude: latitude, longitude: longitude }
+        );
+        const metersToMiles = (distanceInMeters) => {
+          const metersInOneMile = 1609.34;
+          return distanceInMeters / metersInOneMile;
+        };
+        const doctorDistanceInMiles = metersToMiles(doctorDistance);
+        const isWithinRadius = doctorDistanceInMiles <= 10;
+
+        const isAvailableToday = doctor.available === "Today";
+        const isAvailableTomorrow = doctor.available === "Tomorrow";
+        const isAvailableAfterTomorrow = doctor.available === "After tomorrow";
+        let isMatchingDate = false;
+        if (selectedDate === "today") {
+          isMatchingDate = isAvailableToday;
+        } else if (selectedDate === "tomorrow") {
+          isMatchingDate = isAvailableTomorrow;
+        } else if (selectedDate === "after tomorrow") {
+          isMatchingDate = isAvailableAfterTomorrow;
+        }
+
+        return isWithinRadius && isMatchingDate;
+      });
+      setShowAllDoctors(false);
+      setFilteredDoctors(filtered);
+    }
+  };
+
   const handleSearch = () => {
-    console.log("Search clicked");
+    filterDoctorsByLocationAndDate();
   };
 
   return (
@@ -36,27 +89,44 @@ const SearchBox = () => {
       </View>
       <View style={styles.searchBoxes}>
         <View>
-          <TextInput
-            placeholder="Nearby"
-            // value={country}
-            // onChangeText={(text) => setCountry(text)}
-            style={styles.input}
-          />
+          <TouchableOpacity
+            onPress={getCurrentLocation}
+            activeOpacity={0.6}
+            style={[styles.input, styles.btnLocation]}
+          >
+            <Text style={styles.btnLocationTxt}>Nearby</Text>
+          </TouchableOpacity>
           <Image
             source={require("../../assets/location.png")}
             style={styles.mapPin}
           />
         </View>
-        <View>
-          <TextInput
-            placeholder="Today"
-            // value={country}
-            // onChangeText={(text) => setCountry(text)}
-            style={[styles.input, styles.input2]}
-          />
+        <View style={[styles.input, styles.pickerContainerData]}>
+          <Picker
+            selectedValue={selectedDate}
+            onValueChange={(itemValue) => setSelectedDate(itemValue)}
+          >
+            <Picker.Item
+              label="Today"
+              value="today"
+              style={styles.placeholderData}
+            />
+            <Picker.Item
+              label="Tomorrow"
+              value="tomorrow"
+              style={styles.placeholderData}
+            />
+            <Picker.Item
+              label="After tomorrow"
+              value="after tomorrow"
+              style={styles.placeholderData}
+            />
+          </Picker>
           <Image
-            source={require("../../assets/calendar.png")}
-            style={styles.mapPin}
+            source={require("../../assets/calendar2.jpg")}
+            style={styles.icon}
+            width={13.5}
+            height={15}
           />
         </View>
       </View>
@@ -89,6 +159,7 @@ const styles = StyleSheet.create({
   },
 
   pickerContainer: {
+    flex: 1,
     borderWidth: 1,
     borderColor: "#E9E8E8",
     borderStyle: "solid",
@@ -101,6 +172,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
+  pickerContainerData: {
+    justifyContent: "center",
+    paddingLeft: 0,
+    marginLeft: 14,
+  },
+
   pickerContainer2: {
     marginTop: 0,
   },
@@ -111,6 +188,12 @@ const styles = StyleSheet.create({
     letterSpacing: 0.01,
     color: "#08182F",
     opacity: 0.7,
+  },
+
+  placeholderData: {
+    letterSpacing: 0.01,
+    fontSize: 13,
+    lineHeight: 13,
   },
 
   button: {
@@ -134,6 +217,17 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
 
+  btnLocation: {
+    justifyContent: "center",
+  },
+
+  btnLocationTxt: {
+    fontSize: 13,
+    lineHeight: 13,
+    letterSpacing: 0.01,
+    color: "#08182F",
+  },
+
   searchBoxes: {
     display: "flex",
     flexDirection: "row",
@@ -154,14 +248,16 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
 
-  input2: {
-    marginLeft: 14,
-  },
-
   mapPin: {
     position: "absolute",
     bottom: 11,
     left: 142,
+  },
+
+  icon: {
+    position: "absolute",
+    left: 116,
+    zIndex: 2,
   },
 });
 

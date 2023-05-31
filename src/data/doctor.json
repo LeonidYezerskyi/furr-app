@@ -6,10 +6,12 @@
     "position": "Veterinary Dentist",
     "rating": 4.9,
     "address": {
-      "houseNumber": 28,
-      "street": " Oakwood Avenue",
-      "city": " New York "
+      "houseNumber": 453,
+      "street": "Rengstorff Ave",
+      "city": " Mountain View, CA "
     },
+    "latitude": 37.41181218554417,
+    "longitude": -122.09227447047994,
     "available": "Today"
   },
   {
@@ -19,10 +21,12 @@
     "position": "Veterinary Neurosurgeon",
     "rating": 4.3,
     "address": {
-      "houseNumber": 8,
-      "street": " Sharon Avenue",
-      "city": " New York "
+      "houseNumber": "3853",
+      "street": " Corina Way",
+      "city": " Palo Alto, CA "
     },
+    "latitude": 37.424725047633125,
+    "longitude": -122.10719559926993,
     "available": "Tomorrow"
   },
   {
@@ -32,10 +36,12 @@
     "position": "Veterinary Dentist",
     "rating": 4.0,
     "address": {
-      "houseNumber": 20,
-      "street": " Metropolitan Avenue",
-      "city": " New York "
+      "houseNumber": 3873,
+      "street": " Louis Rd",
+      "city": " Palo Alto, CA "
     },
-    "available": "Today"
+    "latitude": 37.42471226713521,
+    "longitude": -122.10626755501141,
+    "available": "After tommorrow"
   }
 ]
