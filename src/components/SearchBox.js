@@ -6,7 +6,7 @@ import { View, TouchableOpacity, StyleSheet, Text, Image } from "react-native";
 
 import doctorsData from "../data/doctor.json";
 
-const SearchBox = ({ setFilteredDoctors, setShowAllDoctors }) => {
+const SearchBox = ({ setFilteredDoctors, setShowAllDoctors, setDistance }) => {
   const [currentLocation, setCurrentLocation] = useState(null);
   const [selectedDate, setSelectedDate] = useState("today");
 
@@ -32,22 +32,29 @@ const SearchBox = ({ setFilteredDoctors, setShowAllDoctors }) => {
     if (currentLocation) {
       const { latitude, longitude } = currentLocation;
 
-      const filtered = doctorsData.filter((doctor) => {
+      const updatedDoctorsData = doctorsData.map((doctor) => {
         const doctorDistance = getDistance(
           { latitude: doctor.latitude, longitude: doctor.longitude },
-          { latitude: latitude, longitude: longitude }
+          { latitude, longitude }
         );
         const metersToMiles = (distanceInMeters) => {
           const metersInOneMile = 1609.34;
-          return distanceInMeters / metersInOneMile;
+          return (distanceInMeters / metersInOneMile).toFixed(2);
         };
         const doctorDistanceInMiles = metersToMiles(doctorDistance);
-        const isWithinRadius = doctorDistanceInMiles <= 10;
+        return {
+          ...doctor,
+          distance: doctorDistanceInMiles,
+        };
+      });
 
+      const filtered = updatedDoctorsData.filter((doctor) => {
+        const isWithinRadius = doctor.distance <= 10;
         const isAvailableToday = doctor.available === "Today";
         const isAvailableTomorrow = doctor.available === "Tomorrow";
         const isAvailableAfterTomorrow = doctor.available === "After tomorrow";
         let isMatchingDate = false;
+
         if (selectedDate === "today") {
           isMatchingDate = isAvailableToday;
         } else if (selectedDate === "tomorrow") {
@@ -58,6 +65,13 @@ const SearchBox = ({ setFilteredDoctors, setShowAllDoctors }) => {
 
         return isWithinRadius && isMatchingDate;
       });
+
+      const distanceValues = {};
+      updatedDoctorsData.forEach((doctor) => {
+        distanceValues[doctor.id] = doctor.distance;
+      });
+      setDistance(distanceValues);
+
       setShowAllDoctors(false);
       setFilteredDoctors(filtered);
     }

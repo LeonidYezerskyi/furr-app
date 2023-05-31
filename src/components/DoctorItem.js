@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-const DoctorItem = ({ item }) => {
+const DoctorItem = ({ item, distance }) => {
   const address = `${item.address.houseNumber} ${item.address.street}, ${item.address.city}`;
 
   return (
@@ -25,7 +25,7 @@ const DoctorItem = ({ item }) => {
           source={require("../../assets/dot.png")}
           style={styles.dotIcon}
         />
-        <Text style={styles.distanceInfo}>2.8 mi</Text>
+        <Text style={styles.distanceInfo}>{distance} mi</Text>
       </View>
       <View style={styles.line} />
       <View style={styles.bottomWrapper}>

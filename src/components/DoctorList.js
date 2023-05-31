@@ -10,8 +10,12 @@ import {
 import DoctorItem from "./DoctorItem";
 import doctorsData from "../data/doctor.json";
 
-const DoctorList = ({ filteredDoctors, showAllDoctors, setShowAllDoctors }) => {
-  // const [showAllDoctors, setShowAllDoctors] = useState(false);
+const DoctorList = ({
+  filteredDoctors,
+  showAllDoctors,
+  setShowAllDoctors,
+  distance,
+}) => {
   const [displayedDoctors, setDisplayedDoctors] = useState([]);
 
   useEffect(() => {
@@ -41,7 +45,7 @@ const DoctorList = ({ filteredDoctors, showAllDoctors, setShowAllDoctors }) => {
         data={displayedDoctors}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
-          return <DoctorItem item={item} />;
+          return <DoctorItem item={item} distance={distance[item.id]} />;
         }}
       />
     </SafeAreaView>

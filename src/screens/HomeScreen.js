@@ -6,8 +6,8 @@ import DoctorList from "../components/DoctorList";
 
 const HomeScreen = () => {
   const [filteredDoctors, setFilteredDoctors] = useState([]);
-  // const [displayedDoctors, setDisplayedDoctors] = useState([]);
   const [showAllDoctors, setShowAllDoctors] = useState(false);
+  const [distance, setDistance] = useState({});
 
   return (
     <View style={styles.container}>
@@ -17,15 +17,14 @@ const HomeScreen = () => {
       >
         <SearchBox
           setFilteredDoctors={setFilteredDoctors}
-          // setDisplayedDoctors={setDisplayedDoctors}
           setShowAllDoctors={setShowAllDoctors}
+          setDistance={setDistance}
         />
         <DoctorList
           filteredDoctors={filteredDoctors}
-          // displayedDoctors={displayedDoctors}
-          // setDisplayedDoctors={setDisplayedDoctors}
           showAllDoctors={showAllDoctors}
           setShowAllDoctors={setShowAllDoctors}
+          distance={distance}
         />
       </ImageBackground>
       <StatusBar barStyle="light-content" />
