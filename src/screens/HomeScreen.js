@@ -6,27 +6,14 @@ import SearchBox from "../components/SearchBox";
 import DoctorList from "../components/DoctorList";
 
 const HomeScreen = () => {
-  const [filteredDoctors, setFilteredDoctors] = useState([]);
-  const [showAllDoctors, setShowAllDoctors] = useState(false);
-  const [distance, setDistance] = useState({});
-
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.image}
         source={require("../../assets/background.png")}
       >
-        <SearchBox
-          setFilteredDoctors={setFilteredDoctors}
-          setShowAllDoctors={setShowAllDoctors}
-          setDistance={setDistance}
-        />
-        <DoctorList
-          filteredDoctors={filteredDoctors}
-          showAllDoctors={showAllDoctors}
-          setShowAllDoctors={setShowAllDoctors}
-          distance={distance}
-        />
+        <SearchBox />
+        <DoctorList />
       </ImageBackground>
       <StatusBar barStyle="light-content" />
     </View>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -7,29 +7,36 @@ import {
   FlatList,
   SafeAreaView,
 } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
 
 import DoctorItem from "./DoctorItem";
+import {
+  setShowAllDoctors,
+  setDisplayedDoctors,
+} from "../redux/slices/doctorsSlice";
 import doctorsData from "../data/doctor.json";
 
-const DoctorList = ({
-  filteredDoctors,
-  showAllDoctors,
-  setShowAllDoctors,
-  distance,
-}) => {
-  const [displayedDoctors, setDisplayedDoctors] = useState([]);
+const DoctorList = () => {
+  const filteredDoctors = useSelector((state) => state.doctors.filteredDoctors);
+  const showAllDoctors = useSelector((state) => state.doctors.showAllDoctors);
+  const displayedDoctors = useSelector(
+    (state) => state.doctors.displayedDoctors
+  );
+  const distance = useSelector((state) => state.doctors.distance);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (showAllDoctors) {
-      setDisplayedDoctors(doctorsData);
+      dispatch(setDisplayedDoctors(doctorsData));
     } else {
-      setDisplayedDoctors(filteredDoctors);
+      dispatch(setDisplayedDoctors(filteredDoctors));
     }
-  }, [showAllDoctors, filteredDoctors]);
+  }, [showAllDoctors, filteredDoctors, dispatch]);
 
   const handleViewAllDoctors = () => {
-    setShowAllDoctors(true);
+    dispatch(setShowAllDoctors(true));
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.listWrapper}>

@@ -2,7 +2,9 @@ import React, { useCallback } from "react";
 import { SafeAreaView } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+import { Provider } from "react-redux";
 
+import store from "./src/redux/store";
 import Main from "./src/components/Main";
 
 SplashScreen.preventAutoHideAsync();
@@ -25,8 +27,10 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
-      <Main />
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
+        <Main />
+      </SafeAreaView>
+    </Provider>
   );
 }

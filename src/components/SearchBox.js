@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import { getDistance } from "geolib";
 import * as Location from "expo-location";
+import { useSelector, useDispatch } from "react-redux";
 import { Picker } from "@react-native-picker/picker";
 import { View, TouchableOpacity, StyleSheet, Text, Image } from "react-native";
+import {
+  setFilteredDoctors,
+  setShowAllDoctors,
+  setDistance,
+} from "../redux/slices/doctorsSlice";
+import {
+  setCurrentLocation,
+  setSelectedDate,
+} from "../redux/slices/locationSlice";
 
 import doctorsData from "../data/doctor.json";
 
-const SearchBox = ({ setFilteredDoctors, setShowAllDoctors, setDistance }) => {
-  const [currentLocation, setCurrentLocation] = useState(null);
-  const [selectedDate, setSelectedDate] = useState("today");
+const SearchBox = () => {
+  const currentLocation = useSelector(
+    (state) => state.location.currentLocation
+  );
+  const selectedDate = useSelector((state) => state.location.selectedDate);
+  const dispatch = useDispatch();
 
   const getCurrentLocation = async () => {
     (async () => {
@@ -21,7 +34,7 @@ const SearchBox = ({ setFilteredDoctors, setShowAllDoctors, setDistance }) => {
     const location = await Location.getCurrentPositionAsync();
     const { latitude, longitude } = location.coords;
 
-    setCurrentLocation({ latitude, longitude });
+    dispatch(setCurrentLocation({ latitude, longitude }));
   };
 
   const filterDoctorsByLocationAndDate = () => {
@@ -70,10 +83,10 @@ const SearchBox = ({ setFilteredDoctors, setShowAllDoctors, setDistance }) => {
       updatedDoctorsData.forEach((doctor) => {
         distanceValues[doctor.id] = doctor.distance;
       });
-      setDistance(distanceValues);
+      dispatch(setDistance(distanceValues));
 
-      setShowAllDoctors(false);
-      setFilteredDoctors(filtered);
+      dispatch(setShowAllDoctors(false));
+      dispatch(setFilteredDoctors(filtered));
     }
   };
 
@@ -118,7 +131,7 @@ const SearchBox = ({ setFilteredDoctors, setShowAllDoctors, setDistance }) => {
         <View style={[styles.input, styles.pickerContainerData]}>
           <Picker
             selectedValue={selectedDate}
-            onValueChange={(itemValue) => setSelectedDate(itemValue)}
+            onValueChange={(itemValue) => dispatch(setSelectedDate(itemValue))}
           >
             <Picker.Item
               label="Today"
