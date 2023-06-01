@@ -12,8 +12,10 @@ const DoctorItem = ({ item, distance }) => {
           <Text style={styles.name}>{item.name}</Text>
           <Text style={styles.position}>{item.position}</Text>
         </View>
-        <Image source={require("../../assets/rating.png")} />
-        <Text style={styles.ratingInfo}>{item.rating}</Text>
+        <View style={styles.ratingWrapper}>
+          <Image source={require("../../assets/rating.png")} />
+          <Text style={styles.ratingInfo}>{item.rating}</Text>
+        </View>
       </View>
       <View style={styles.locationWrapper}>
         <Image
@@ -87,7 +89,6 @@ const styles = StyleSheet.create({
     color: "#08182F",
     opacity: 0.9,
     marginBottom: 9,
-    marginRight: 134,
   },
 
   position: {
@@ -99,6 +100,15 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
 
+  ratingWrapper: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+    marginBottom: 18,
+    marginLeft: "auto",
+  },
+
   ratingInfo: {
     fontFamily: "Outfit-SemiBold",
     fontWeight: 600,
@@ -106,13 +116,12 @@ const styles = StyleSheet.create({
     letterSpacing: 0.02,
     color: "#FFBA07",
     opacity: 0.9,
-    marginLeft: 5,
+    marginTop: 2,
   },
 
   locationWrapper: {
     display: "flex",
     flexDirection: "row",
-    textAlign: "center",
     alignItems: "center",
     marginTop: 16,
     marginLeft: 15,
