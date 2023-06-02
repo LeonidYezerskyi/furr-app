@@ -33,6 +33,7 @@ const SearchBox = () => {
     })();
 
     const location = await Location.getCurrentPositionAsync();
+
     const { latitude, longitude } = location.coords;
 
     dispatch(setCurrentLocation({ latitude, longitude }));
@@ -40,7 +41,9 @@ const SearchBox = () => {
 
   const filterDoctorsByLocationAndDate = () => {
     if (currentLocation === null) {
-      alert("We need your location in order to suggest nearby clinic.");
+      alert(
+        "We need your location in order to suggest nearby clinic. If you already pressed the button Nearby and the location is still not there, please, wait a second. It's take a little bit time"
+      );
     }
 
     if (currentLocation) {
