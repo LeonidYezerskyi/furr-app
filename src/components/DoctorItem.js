@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.02,
     color: "#2F5EA0",
     marginRight: 6,
+    marginTop: 3,
   },
 
   dotIcon: {

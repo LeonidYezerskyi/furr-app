@@ -6,12 +6,12 @@
     "position": "Veterinary Dentist",
     "rating": 4.9,
     "address": {
-      "houseNumber": 453,
-      "street": "Rengstorff Ave",
-      "city": " Mountain View, CA "
+      "houseNumber": 66,
+      "street": "Mykola Shpaka St",
+      "city": " Kyiv "
     },
-    "latitude": 37.41181218554417,
-    "longitude": -122.09227447047994,
+    "latitude": 50.457616936763515,
+    "longitude": 30.430412437078317,
     "available": "Today"
   },
   {
@@ -21,12 +21,12 @@
     "position": "Veterinary Neurosurgeon",
     "rating": 4.3,
     "address": {
-      "houseNumber": "3853",
-      "street": " Corina Way",
-      "city": " Palo Alto, CA "
+      "houseNumber": "43/4",
+      "street": " Degtyarivska St",
+      "city": " Kyiv "
     },
-    "latitude": 37.424725047633125,
-    "longitude": -122.10719559926993,
+    "latitude": 50.46181903780082,
+    "longitude": 30.44030727903618,
     "available": "Tomorrow"
   },
   {
@@ -36,12 +36,12 @@
     "position": "Veterinary Dentist",
     "rating": 4.0,
     "address": {
-      "houseNumber": 3873,
-      "street": " Louis Rd",
-      "city": " Palo Alto, CA "
+      "houseNumber": 2,
+      "street": " Olzhicha St",
+      "city": " Kyiv "
     },
-    "latitude": 37.42471226713521,
-    "longitude": -122.10626755501141,
+    "latitude": 50.477943000196966,
+    "longitude": 30.45026141890762,
     "available": "After tomorrow"
   }
 ]
