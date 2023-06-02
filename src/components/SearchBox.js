@@ -147,7 +147,7 @@ const SearchBox = () => {
             style={styles.mapPin}
           />
         </View>
-        <View style={[styles.btn, styles.dropdownContainerData]}>
+        <View style={styles.dropdownContainerData}>
           <SelectDropdown
             buttonStyle={styles.dropdownBtnStyle}
             buttonTextStyle={styles.dropdownBtnTxtStyle}
@@ -205,10 +205,6 @@ const styles = StyleSheet.create({
 
   dropdownContainer: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: "#E9E8E8",
-    borderStyle: "solid",
-    borderRadius: 6,
     marginLeft: 20,
     marginRight: 20,
     marginTop: 25,
@@ -284,8 +280,9 @@ const styles = StyleSheet.create({
 
   dropdownContainerData: {
     justifyContent: "center",
-    paddingLeft: 0,
     marginLeft: 14,
+    height: 40,
+    width: 150,
   },
 
   iconCalendar: {
