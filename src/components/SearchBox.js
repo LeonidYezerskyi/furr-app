@@ -43,50 +43,52 @@ const SearchBox = () => {
       alert("We need your location in order to suggest nearby clinic.");
     }
 
-    const { latitude, longitude } = currentLocation;
+    if (currentLocation) {
+      const { latitude, longitude } = currentLocation;
 
-    const updatedDoctorsData = doctorsData.map((doctor) => {
-      const doctorDistance = getDistance(
-        { latitude: doctor.latitude, longitude: doctor.longitude },
-        { latitude, longitude }
-      );
-      const metersToMiles = (distanceInMeters) => {
-        const metersInOneMile = 1609.34;
-        return (distanceInMeters / metersInOneMile).toFixed(2);
-      };
-      const doctorDistanceInMiles = metersToMiles(doctorDistance);
-      return {
-        ...doctor,
-        distance: doctorDistanceInMiles,
-      };
-    });
+      const updatedDoctorsData = doctorsData.map((doctor) => {
+        const doctorDistance = getDistance(
+          { latitude: doctor.latitude, longitude: doctor.longitude },
+          { latitude, longitude }
+        );
+        const metersToMiles = (distanceInMeters) => {
+          const metersInOneMile = 1609.34;
+          return (distanceInMeters / metersInOneMile).toFixed(2);
+        };
+        const doctorDistanceInMiles = metersToMiles(doctorDistance);
+        return {
+          ...doctor,
+          distance: doctorDistanceInMiles,
+        };
+      });
 
-    const filtered = updatedDoctorsData.filter((doctor) => {
-      const isWithinRadius = doctor.distance <= 10;
-      const isAvailableToday = doctor.available === "Today";
-      const isAvailableTomorrow = doctor.available === "Tomorrow";
-      const isAvailableAfterTomorrow = doctor.available === "After tomorrow";
-      let isMatchingDate = false;
+      const filtered = updatedDoctorsData.filter((doctor) => {
+        const isWithinRadius = doctor.distance <= 10;
+        const isAvailableToday = doctor.available === "Today";
+        const isAvailableTomorrow = doctor.available === "Tomorrow";
+        const isAvailableAfterTomorrow = doctor.available === "After tomorrow";
+        let isMatchingDate = false;
 
-      if (selectedDate === "Today") {
-        isMatchingDate = isAvailableToday;
-      } else if (selectedDate === "Tomorrow") {
-        isMatchingDate = isAvailableTomorrow;
-      } else if (selectedDate === "After tomorrow") {
-        isMatchingDate = isAvailableAfterTomorrow;
-      }
+        if (selectedDate === "Today") {
+          isMatchingDate = isAvailableToday;
+        } else if (selectedDate === "Tomorrow") {
+          isMatchingDate = isAvailableTomorrow;
+        } else if (selectedDate === "After tomorrow") {
+          isMatchingDate = isAvailableAfterTomorrow;
+        }
 
-      return isWithinRadius && isMatchingDate;
-    });
+        return isWithinRadius && isMatchingDate;
+      });
 
-    const distanceValues = {};
-    updatedDoctorsData.forEach((doctor) => {
-      distanceValues[doctor.id] = doctor.distance;
-    });
+      const distanceValues = {};
+      updatedDoctorsData.forEach((doctor) => {
+        distanceValues[doctor.id] = doctor.distance;
+      });
 
-    dispatch(setDistance(distanceValues));
-    dispatch(setShowAllDoctors(false));
-    dispatch(setFilteredDoctors(filtered));
+      dispatch(setDistance(distanceValues));
+      dispatch(setShowAllDoctors(false));
+      dispatch(setFilteredDoctors(filtered));
+    }
   };
 
   const handleSearch = () => {
